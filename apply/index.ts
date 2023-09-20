@@ -5,7 +5,9 @@ import fillFields from '../apply-form/fillFields';
 import waitForNoError from '../apply-form/waitForNoError';
 import clickNextButton from '../apply-form/clickNextButton';
 
-const noop = () => { };
+const noop = (err: Error) => { 
+  console.log(err)
+};
 
 async function clickEasyApplyButton(page: Page): Promise<void> {
   await page.waitForSelector(selectors.easyApplyButtonEnabled, { timeout: 10000 });
