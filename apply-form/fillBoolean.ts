@@ -10,10 +10,10 @@ async function fillBoolean(page: Page, booleans: { [key: string]: boolean }): Pr
 
     if (options.length === 2) {
       const label = await fieldset.$eval('legend', el => el.innerText);
-  console.log("LABEL------------------15",label)
+  console.log("LABEL===========",label)
 
       for (const [labelRegex, value] of Object.entries(booleans)) {
-  console.log("LABELREGEX------------------16",labelRegex)
+  console.log("========LABELREGEX===========",labelRegex)
 
         if (new RegExp(labelRegex, "i").test(label)) {
           const input = await fieldset.$(`${selectors.radioInput}[value='${value ? 'Yes' : 'No'}']`) as ElementHandle;
@@ -30,7 +30,7 @@ async function fillBoolean(page: Page, booleans: { [key: string]: boolean }): Pr
   for (const checkbox of checkboxes) {
     const id = await checkbox.evaluate(el => el.id);
     const label = await page.$eval(`label[for="${id}"]`, el => el.innerText);
-    console.log("LABEL------------------33",label)
+    console.log("LABEL===========",label)
 
     for (const [labelRegex, value] of Object.entries(booleans)) {
       if (new RegExp(labelRegex, "i").test(label)) {
@@ -54,7 +54,7 @@ async function fillBoolean(page: Page, booleans: { [key: string]: boolean }): Pr
     if (options.length === 2) {
       const id = await select.evaluate(el => el.id);
       const label = await page.$eval(`label[for="${id}"]`, el => el.innerText);
-      console.log("LABEL------------------56",label)
+      console.log("LABEL===========56",label)
       for (const [labelRegex, value] of Object.entries(booleans)) {
         if (new RegExp(labelRegex, "i").test(label)) {
           const option = await options[value ? 0 : 1].evaluate((el) => (el as HTMLOptionElement).value);
